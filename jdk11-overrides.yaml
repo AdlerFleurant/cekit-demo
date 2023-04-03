@@ -51,7 +51,6 @@ modules:
   - name: os-eap-python
     version: "3.6"
 packages:
-  content_sets_file: content_sets_rhel8_jdk11.yaml
   install:
   - python3-pyyaml
 osbs:
