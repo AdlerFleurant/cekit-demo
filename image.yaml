@@ -1,12 +1,12 @@
 schema_version: 1
 
-name: "jboss-webserver-5/jws57-openjdk8-rhel8-openshift"
+name: "jboss-webserver-5/jws57-openjdk8-ubi8-openshift"
 description: "Red Hat JBoss Web Server 5.7 - Tomcat 9 OpenShift container image with OpenJDK8 on UBI8"
 version: "5.7.1"
-from: "jboss-webserver-5/webserver57-openjdk8-tomcat9-rhel8:5.7.1"
+from: "registry.redhat.io/ubi8/ubi:latest"
 labels:
-- name: "com.redhat.component"
-  value: "jboss-webserver-57-openjdk8-rhel8-openshift-container"
+- name: "org.acme.component"
+  value: "jboss-webserver-57-openjdk8-ubi8-openshift-container"
 - name: "io.k8s.description"
   value: "Platform for building and running web applications on JBoss Web Server 5.7 with OpenJDK8 - Tomcat v9"
 - name: "io.k8s.display-name"
@@ -17,9 +17,41 @@ labels:
   value: "builder,java,tomcat9"
 - name: "io.openshift.s2i.scripts-url"
   value: "image:///usr/local/s2i"
+- name: "org.jboss.product"
+  value: "webserver-tomcat9"
+- name: "org.jboss.product.version"
+  value: "5.7.1"
+- name: "org.jboss.product.webserver-tomcat9.version"
+  value: "5.7.1"
+- name: "com.redhat.deployments-dir"
+  value: "/opt/jws-5.7/tomcat/webapps"
+- name: "com.redhat.dev-mode"
+  value: "DEBUG:true"
+  description: "Environment variable used to enable development mode (debugging).  A value of true will enable development mode."
+- name: "com.redhat.dev-mode.port"
+  value: "JPDA_ADDRESS:8000"
+  description: "Environment variable used to specify the debug port.  If not set, the default Tomcat debug port will be used (8000).  Only applicable when development mode is enabled."
 - name: "maintainer"
-  value: "szappis@redhat.com"
+  value: "Adler Fleurant"
 envs:
+- name: "JBOSS_PRODUCT"
+  value: "webserver"
+- name: "JBOSS_WEBSERVER_VERSION"
+  value: "5.7.1"
+- name: "PRODUCT_VERSION"
+  value: "5.7.1"
+- name: "TOMCAT_VERSION"
+  value: "9.0.62"
+- name: "JWS_HOME"
+  value: "/opt/jws-5.7/tomcat"
+- name: "CATALINA_OPTS"
+  value: "-Djava.security.egd=file:/dev/./urandom"
+- name: "JPDA_ADDRESS"
+  value: "8000"
+  description: "Specify the port to use for debugging. If not set, the default Tomcat debug port will be used (8000).  Only applicable when development mode is enabled."
+- name: DEBUG
+  example: false
+  description: "Specify true to enable development mode (debugging)."
 - name: "STI_BUILDER"
   value: "jee"
 - name: JWS_HTTPS_CERTIFICATE_DIR
@@ -80,11 +112,24 @@ envs:
   description: Enable the Access Log.
 
 ports:
+- value: 8080
+- value: 8000
+  expose: false
 - value: 8443
 modules:
   repositories:
   - path: modules
   install:
+  - name: jboss.container.openjdk.jdk
+    version: "8"
+  - name: jws-unpack-tomcat9
+    version: "x86_64"
+  - name: jws-chown
+    version: "1.0"
+  - name: jws-debugging
+    version: "1.0"
+  - name: jws-disable-ajp
+    version: "1.0"
   - name: jboss.container.maven.35.bash
     version: "3.5"
   - name: dynamic-resources
