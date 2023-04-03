@@ -131,7 +131,7 @@ modules:
             version: "3.6"
 
 packages:
-      content_sets_file: content_sets.yml
+      content_sets_file: content_sets.yaml
       install:
           - python3-pyyaml
 run:
