@@ -15,6 +15,8 @@ modules:
   repositories:
   - path: modules
   install:
+  - name: jboss.container.java.run.bash
+    version: "1.0"
   - name: jboss.container.java.rm-openjdk
   - name: dynamic-resources
   - name: jws8-conffiles
@@ -48,16 +50,3 @@ modules:
 packages:
   install:
   - python3-pyyaml
-osbs:
-  repository:
-    name: containers/jboss-webserver-openjdk11-tomcat9
-    branch: jws-5.7-openshift-rhel-8
-  configuration:
-    container:
-      compose:
-        pulp_repos: true
-      platforms:
-        only:
-        - x86_64
-        - s390x
-        - ppc64le

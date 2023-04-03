@@ -6,9 +6,9 @@ execute:
 - script: run
 
 ports:
-    - value: 9404
-      protocol: tcp
-      description: internal port for prometheus agent
+- value: 9404
+  protocol: tcp
+  description: internal port for prometheus agent
 
 envs:
 - name: JBOSS_CONTAINER_PROMETHEUS_MODULE
