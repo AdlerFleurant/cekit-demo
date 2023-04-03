@@ -95,7 +95,7 @@ modules:
             git:
                   url: https://github.com/web-servers/jboss-jws-container-images-modules
                   ref: main
-          - path: custom-modules
+          - path: modules
       install:
           - name: jboss.container.maven.35.bash
             version: "3.5"
