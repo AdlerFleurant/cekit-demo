@@ -1,0 +1,8 @@
+#!/bin/sh
+# Hello World ROOT.war
+SCRIPT_DIR="$(dirname $0)"
+ADDED_DIR="$SCRIPT_DIR/added"
+
+# https://issues.redhat.com/browse/JWS-1830
+cd $ADDED_DIR; jar cvf ROOT.war *
+cp -p "$ADDED_DIR/ROOT.war" "/deployments"
