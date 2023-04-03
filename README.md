@@ -14,5 +14,5 @@ do
 done
 ```
 
-
-Download your jws artifacts.
+Download your jws artifacts and add them to the jws-unpack-tomcat9 module: [](tomcat-ubi8/modules/jws-unpack-tomcat9/x86_64/module.yaml).
+Be sure to include the md5 for each added component.

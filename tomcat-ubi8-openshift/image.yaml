@@ -15,8 +15,6 @@ labels:
   value: "8080:http"
 - name: "io.openshift.tags"
   value: "builder,java,tomcat9"
-- name: "io.openshift.s2i.scripts-url"
-  value: "image:///usr/local/s2i"
 - name: "maintainer"
   value: "szappis@redhat.com"
 envs:
@@ -85,12 +83,7 @@ modules:
   repositories:
   - path: modules
   install:
-  - name: jboss.container.maven.35.bash
-    version: "3.5"
   - name: dynamic-resources
-  - name: s2i-common
-  - name: os-jws-s2i
-    version: "3.0"
   - name: jws8-conffiles
     version: "1.0"
   - name: rm-manager
