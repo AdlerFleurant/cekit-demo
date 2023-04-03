@@ -13,3 +13,6 @@ do
   cekit-cache add $MAVEN_REPO/$artifact --md5 $(curl $MAVEN_REPO/$artifact.md5)
 done
 ```
+
+
+Download your jws artifacts.
