@@ -5,3 +5,6 @@ set -e
 # https://issues.jboss.org/browse/CLOUD-128
 mv $JWS_HOME/webapps/* "/deployments"
 rmdir $JWS_HOME/webapps
+
+chmod -R "ug+rwX" /deployments \
+ && chown -R jboss:root /deployments
