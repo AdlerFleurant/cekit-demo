@@ -83,6 +83,8 @@ modules:
   repositories:
   - path: modules
   install:
+  - name: jboss.container.java.run.bash
+    version: "1.0"
   - name: dynamic-resources
   - name: jws8-conffiles
     version: "1.0"
